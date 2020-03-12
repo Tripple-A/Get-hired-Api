@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-    include CurrentUserConcern
+  include CurrentUserConcern
   def create
+    error = if User.find_by(email: params['email'])
+              'Password incorrect'
+            else ''
+            end
+
     user = User
            .find_by(email: params['email'])
            .try(:authenticate, params['password'])
@@ -15,26 +20,27 @@ class SessionsController < ApplicationController
         user: user
       }
     else
-      render json: { status: 401 }
+      render json: { status: 401, error: error }
     end
   end
 
-  def logged_in 
+  def logged_in
     if @current_user
-        render json: {
-            logged_in: true,
-            user: @current_user
-        }
+      render json: {
+        logged_in: true,
+        user: @current_user
+      }
     else
-        render json: {
-            logged_in: false
-        }
-        
+      render json: {
+        logged_in: false
+      }
+
     end
   end
 
   def logout
     reset_session
+    # session[:user_id] = null
     render json: {
       logged_out: true
     }

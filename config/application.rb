@@ -12,7 +12,7 @@ module GethiredApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    #config.api_only = true
+    # config.api_only = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
@@ -20,11 +20,11 @@ module GethiredApp
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3001'
-    
+
         resource '*',
-          headers: :any,
-          methods: [:get, :post, :put, :patch, :delete, :options, :head],
-          credentials: true
+                 headers: :any,
+                 methods: %i[get post put patch delete options head],
+                 credentials: true
       end
     end
   end
