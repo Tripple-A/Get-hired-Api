@@ -18,6 +18,16 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def toggle
+    user = User.find(params[:id])
+    user.update_attribute(:vendor, true)
+    render json: {
+      user: user
+    }
+
+  end
+
+  private 
   def reg_params
     params.permit(:email, :password, :password_confirmation)
   end
