@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       render json: {
         status: 'created',
         logged_in: true,
-        user: user
+        user: user.with_attached_image
       }
     else
       render json: { status: 401, error: error }
