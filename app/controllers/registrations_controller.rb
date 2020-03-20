@@ -18,7 +18,7 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  def toggle
+  def show
     user = User.find(params[:id])
     user.update_attribute(:vendor, true)
     render json: {
