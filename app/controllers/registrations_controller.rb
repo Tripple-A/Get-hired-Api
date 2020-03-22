@@ -22,15 +22,18 @@ class RegistrationsController < ApplicationController
     user = User.find(params[:id])
     user.update_attribute(:vendor, true)
     render json: {
-      user: user.with_attached_image
+      user: user
     }
 
   end
 
   def add_image
+    user = User.find(params[:id])
+    user.image.attach(io: File.open('app/assets/images/LUIS.png'),filename: params[:image].original_filename, content_type:params[:image].content_type )
     render json: {
       status: 'image received',
-      image_title: params[:image].original_filename
+      image: user.image.attached?,
+      src: url_for(user.image)
     }
   end
 
