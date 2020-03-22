@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RegistrationsController < ApplicationController
+  include CurrentUserConcern
   def create
     user = User.new(reg_params)
     if user.save
@@ -19,9 +20,10 @@ class RegistrationsController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
+    user = @current_user
     user.update_attribute(:vendor, true)
     render json: {
+      status: 'ok',
       user: user
     }
 

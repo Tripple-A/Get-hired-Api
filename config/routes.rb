@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post :add, to: 'registrations#add_image'
   resources :profiles
   resources :chefs
+  get :charges, to: 'charges#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
