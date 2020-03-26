@@ -29,18 +29,10 @@ class RegistrationsController < ApplicationController
 
   end
 
-  def add_image
-    user = User.find(params[:id])
-    user.image.attach(io: File.open('app/assets/images/LUIS.png'),filename: params[:image].original_filename, content_type:params[:image].content_type )
-    render json: {
-      status: 'image received',
-      image: user.image.attached?,
-      src: url_for(user.image)
-    }
-  end
+  
 
   private 
   def reg_params
-    params.permit(:email, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation)
   end
 end
