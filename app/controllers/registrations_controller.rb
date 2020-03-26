@@ -29,7 +29,6 @@ class RegistrationsController < ApplicationController
 
   end
 
-  
 
   private 
   def reg_params

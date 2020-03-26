@@ -2,24 +2,33 @@ class ProfilesController < ApplicationController
     include CurrentUserConcern
 
     def create
-        user = User.find(params[:id])
+        user = @current_user
+        if !user.profile
         profile = Profile.new(profile_params)
-        profile.user_id = user.id
+        profile.user_id = @current_user.id
         if profile.save
         render json: {
-          user: user,
+          status: 200,
           profile: profile
         }
         else render json: {
             status: 500,
             message: 'Profile not saved'
         }
+      end
+    else redirect_to action: "change"
         end
     end
 
     def show
         render json: {
             id: params[:id]
+        }
+    end
+
+    def change 
+        render json: {
+            message: 'you exist'
         }
     end
 
