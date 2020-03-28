@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
   end
 
   def show
-    user = @current_user
+    user = User.find(params[:id])
     user.update_attribute(:vendor, true)
     render json: {
       status: 'ok',
