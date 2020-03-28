@@ -23,7 +23,12 @@ class ProfilesController < ApplicationController
             message: 'Profile not saved'
         }
       end
-    else redirect_to action: "change"
+    else 
+        user.profile.update(profile_params)
+        render json: {
+        message: 'profile updated',
+        profile: user.profile
+    }
         end
     end
 

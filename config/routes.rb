@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get :logged_in, to: 'sessions#logged_in'
   post :add, to: 'registrations#add_image'
   resources :profiles
-  get :change, to: 'profiles#change'
   resources :chefs
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
