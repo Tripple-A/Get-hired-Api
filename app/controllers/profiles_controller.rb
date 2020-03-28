@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
 
     def create
         user = User.find(params[:user_id])
-        if !user.profile
+        if !user.profile && user.vendor
         profile = Profile.new(profile_params)
         if profile.save
         render json: {
