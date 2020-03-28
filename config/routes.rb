@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root to: 'static#home'
   resources :sessions, only: [:create]
-  resources :registrations, only: [:create, :show]
+  resources :registrations, only: %i[create show]
   delete :logout, to: 'sessions#logout'
   get :logged_in, to: 'sessions#logged_in'
   post :add, to: 'registrations#add_image'

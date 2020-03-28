@@ -1,11 +1,18 @@
 class ProfilesController < ApplicationController
     include CurrentUserConcern
+ 
+    def index 
+       vendors = Profile.all 
+       render json: {
+           status: 'ok',
+           vendors: vendors
+       }
+    end
 
     def create
-        user = @current_user
+        user = User.find(params[:user_id])
         if !user.profile
         profile = Profile.new(profile_params)
-        profile.user_id = @current_user.id
         if profile.save
         render json: {
           status: 200,
@@ -34,7 +41,7 @@ class ProfilesController < ApplicationController
 
     private
     def profile_params 
-        params.permit(:company_name,:pitch,:location,:specialty,:id)
+        params.permit(:company_name,:pitch,:location,:specialty,:user_id)
     end
 
 end

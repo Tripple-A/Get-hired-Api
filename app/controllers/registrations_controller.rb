@@ -26,11 +26,10 @@ class RegistrationsController < ApplicationController
       status: 'ok',
       user: user
     }
-
   end
 
+  private
 
-  private 
   def reg_params
     params.permit(:name, :email, :password, :password_confirmation)
   end
