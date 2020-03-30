@@ -38,15 +38,9 @@ class ProfilesController < ApplicationController
         }
     end
 
-    def change 
-        render json: {
-            message: 'you exist'
-        }
-    end
-
     private
     def profile_params 
-        params.permit(:company_name,:pitch,:location,:specialty,:user_id)
+        params.permit(:company_name,:pitch,:location,:specialty,:user_id, :logo)
     end
 
 end
