@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def index
     vendors = Profile.all
     render json: {
-      status: 'ok',
+      status: 200,
       vendors: vendors
     }
   end
