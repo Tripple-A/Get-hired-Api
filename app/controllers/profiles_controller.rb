@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
     if profile.images.count > 0
       images = profile.images
     else
-      images = null
+      images = false
     end
     if user
     render json: {
