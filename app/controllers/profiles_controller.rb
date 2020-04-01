@@ -35,9 +35,19 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    user = User.find(params[:id])
+    profile = user.profile
+    if profile.images.count > 0
+      images = profile.images
+    else
+      images = null
+    end
+    if user
     render json: {
-      id: params[:id]
+      profile: user.profile,
+      images: images
     }
+    end
   end
 
   private
