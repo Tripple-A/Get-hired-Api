@@ -28,16 +28,17 @@ class ProfilesController < ApplicationController
     else
       user.profile.update(profile_params)
       render json: {
-        message: 'profile updated',
+        status: 200,
         profile: user.profile
       }
     end
   end
 
   def show
+    if !params[:id].include?('vendor')
     user = User.find(params[:id])
     profile = user.profile
-    if profile.images.count > 0
+    if profile.images.count.positive?
       images = profile.images
     else
       images = false
@@ -47,6 +48,11 @@ class ProfilesController < ApplicationController
       profile: user.profile,
       images: images
     }
+    end
+    else
+      render json:{
+        vendor: Profile.find(params[:id].split('-')[1])
+      }
     end
   end
 
