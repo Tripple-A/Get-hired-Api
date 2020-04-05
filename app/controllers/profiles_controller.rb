@@ -50,8 +50,10 @@ class ProfilesController < ApplicationController
     }
     end
     else
-      render json:{
-        vendor: Profile.find(params[:id].split('-')[1])
+      profile = Profile.find(params[:id].split('-')[1])
+      render json: {
+        vendor: profile,
+        images: profile.images
       }
     end
   end
