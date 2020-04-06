@@ -11,4 +11,6 @@ class Profile < ApplicationRecord
             presence: true,
             numericality: { message: 'input numbers only please' },
             length: { minimum: 11, maximum: 13 }
+  has_many :potential_customers, through: :savings, source: :potential_customer
+  has_many :savings, foreign_key: :potential_vendor_id
 end

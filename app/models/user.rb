@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :name, presence: true
   validates :password_confirmation, presence: true
+  has_many :savings, foreign_key: :potential_customer_id
+  has_many :potential_vendors, through: :savings, source: :potential_vendor
 end
