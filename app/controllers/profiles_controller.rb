@@ -61,6 +61,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.permit(:company_name, :pitch, :location, :specialty, :user_id, :logo)
+    params.permit(:company_name, :pitch, :location, :specialty, :user_id, :logo, :phone_number)
   end
 end

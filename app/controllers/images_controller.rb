@@ -2,8 +2,7 @@ class ImagesController < ApplicationController
 
     def create 
        id = User.find(params[:user_id]).profile.id
-       image = Image.new(:url => params[:url], :title => params[:title])
-       image.profile_id = id
+       image = Image.new(:url => params[:url], :title => params[:title], :profile_id => id)
        if image.save 
         render json: {
             status: 'success'
